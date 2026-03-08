@@ -1,7 +1,6 @@
 
 """ MADE BY CHAT FOR CONVINIENCE """
 
-
 import os
 import glob
 import cv2
