@@ -1,0 +1,205 @@
+
+
+##########Titre#############
+TP2 : Espace fréquentielles en Photographie
+William Boissonneault
+
+
+#######Pre-face##########
+À moins d'indication contraire, toutes les photos utilisés sont de moi. Soit de mes travaux de recherches ou bien de mes photographie personnels.
+
+Chat-GPT à été utiliser pour transformer le fichier de rapport .txt avec fichier html avec le même style que fournit au TP1.
+Chat-GPT à été utiliser pour la génération du code pour l'affichage des figures (comme aide matplot lib)
+
+La programation conceptuel et lié au calcul est fait par moi-même, sauf pour indiquations contraire
+
+
+####################Section 1########################
+Titre: Accentuation (Sharpenning)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum nisi et metus efficitur, eget commodo nunc lobortis. Duis justo diam, consequat ut magna vitae, ullamcorper malesuada erat. Mauris consequat rhoncus mollis. Curabitur gravida luctus felis eget facilisis. Pellentesque faucibus, odio sed interdum lobortis, neque est viverra erat, et tincidunt urna mauris quis lacus. Curabitur vitae vehicula leo. Morbi eget arcu tincidunt, accumsan leo luctus, suscipit nibh. Integer non magna euismod, placerat ligula at, tempor diam. Sed finibus cursus vulputate. Mauris interdum elementum libero eget maximus. Aenean mi metus, tempus quis risus sit amet, dictum rhoncus arcu. Aenean lacus lacus, semper sit amet ante vitae, tincidunt pretium mi. Quisque elit magna, facilisis in maximus eget, fringilla eu massa. Nam tincidunt congue tellus sed fringilla. Maecenas vulputate porta urna ac rutrum. Morbi imperdiet placerat lobortis.
+
+Ut neque leo, sollicitudin ac est quis, laoreet tristique turpis. Morbi interdum a erat in gravida. Phasellus in dui tortor. Ut faucibus hendrerit posuere. Proin aliquet ultricies quam, eleifend gravida sapien volutpat mollis. Vivamus lobortis arcu turpis, vel tempus enim sagittis non. Donec ligula nunc, finibus in nulla vitae, porta cursus enim. Quisque mollis cursus dui euismod auctor. Suspendisse potenti. In ut eros viverra, mattis odio.
+
+
+##Figure##
+path: images\sharp\sharp_comp.png
+Légende: Photographie d'un oiseau avant et après l'application du filtre de sharppening choisi
+
+Le filtre appliqué est le filtre standard
+
+###Équation###
+latex; $I_r = I_i + \alpha ( I_i - G(\sigma)) $
+
+
+Voyons l'effet des paramètres: 
+
+##Figure##
+path_subplot1: images\sharp\sharp_comp.png
+path_subplot2: images\sharp\sharp_comp.png
+Légende: Variation des paramètres de filtre sharppening, montrant....
+
+
+Voyons l'effet des paramètres dans des conditions difficiles (astrophotographie): 
+
+##Figure##
+path_subplot1: images\sharp\sharp_comp.png
+path_subplot2: images\sharp\sharp_comp.png
+Légende: Variation des paramètres de filtre sharppening, montrant....
+
+
+Maintenant quelque avant après
+
+##Figure##
+path_subplot1: images\sharp\sharp_comp.png
+path_subplot2: images\sharp\sharp_comp.png
+Légende: Résultat images et images section rapproché
+
+##Figure##
+path_subplot1: images\sharp\sharp_comp.png
+path_subplot2: images\sharp\sharp_comp.png
+Légende: Résultat images et images section rapproché
+
+Peut réparer en quelque sorte camoufler le floutage de mouvement comme dans l'example de l'oiseaux en plein vol
+
+
+
+
+
+
+
+###################Section 2#############################
+Cette section est basé sur l'article _____
+######SOURCE : 
+
+explication de la méthode
+
+explication de l'unité cycle par image.
+
+##Figure##
+path: images\hybride\albert_monroe_ingredients.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+À noter, que pour améliorer le rendu comparé à l'exemple du TP, les bordures ont été remplis avec un filter de moyenne local. Cela diminue les bordures apparentes causé par l'aligment. 
+
+
+Selon l'article la perception humaine fait que lorsque vu de loin l'image basse fréquence domine, alors que vu de proche l'image haute fréquence domine.
+
+Cette perception est basé sur resolution angulaire, alors nous pouvons simuler qu'un internaute le voit de loin en l'affichant plus petit comme sur la prochaine figure 
+
+##Figure##
+path: images\hybride\albert_monroe_visualisation.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+
+Voyons ce qui ce passe en fréquence. La figure ... montre le spectre des deux photos qui sont combiné. le spectre est zoomé au centre afin de mieux apercevoir le phénomème. rouge + bleu 
+
+##Figure##
+path: images\hybride\albert_monroe_frequency.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+Explication détails à l'alentour....
+
+Fréquence de coupure différente, GAP
+
+
+ceci peut etre generaliser en couleur, il faut cependant faire attention à la perception couleur humaine. effectivement il a été remarqué qu'en couleur, une grande saturation de l'image basse fréquence (souvent plus percu dans les basses fréquences basé sur mes expérimentation). La prochaine image tente de faire la métamorphose entre l'autonme (la ou ce que les fréquences sont très élevés en générales) et l'hiver (là ou ce que les fréquences sont très basse en générales). Le point de vue n'est pas exactement pareil de ce qui dimiue la qualité de l'effet.
+
+
+##Figure##
+path: images\hybride\banc_chalet_ingredients.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+##Figure##
+path: images\hybride\banc_chalet_visualisation.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+##Figure##
+path: images\hybride\banc_chalet_finalImg.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+
+######Sous section 2.1 : bonus Utile######
+
+Cette même technique, combinaisons de différents contenu fréquentielles, lorsque les concepts sont bien compris peuvent être utilisé non simplement pour un party tric, mais pour des fins utiles.
+
+La prochaine example modifie la technique en ayant la fréquence de coupure passe bas, plus haute que la fréquence de coupure passe-haut. Le but étant de combiner des techniques de microscopie qui sont assez complémentaire. La combinations des images de ces deux=ci formerait une image de meilleur attrait et contentant toute l'information. 
+
+La première image vient de la technique de microscope aDRiM, développé à l'université laval, conjonjointement avec mon professeur Tigran Galstian. Les images sont tirés des prises de données prise par-moi. Cette technique permet de monter du contenu spatial de basse fréquence et des hautes fréquences. Par contre elle excelle plus en basse fréquence. On peut voir une bulle de colle sur les images
+###Source
+
+La deuxième image et technique est celle du contrast de phase, qui montre les contours des objets avec brio. Par contre cette technique est aveugle à l'aspect volumétrique (contenu dans les basse fréquences) de l'objet.
+
+Je combine donc les deux techniques de microscopies afin de retourver une images qui a à la fois les détails de contour de la technique de phase contrats microscopy ET les informations volumétrique fournit par aDRiM. Nous retrouvons donc une image de ''super'' microscope!
+
+##Figure##
+path: images\hybride\bonusUtile\super_microscope_ingredients.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+On remarque les ronds dans le spectres de l'image 2 (phase contrast microscopy)
+##Figure##
+path: images\hybride\bonusUtile\super_microscope_frequency.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+
+######Sous section 2.2 : bonus GIF ######
+
+À des fins de marketing de la nouvelle technique de microscopie aDRiM, il serait intéressant de pouvoir visualiser le changement qu'apporte la technologie. J'ai donc fait un code créeant un GIF animation. 
+
+Ces GIF sont fait en prenant la vision noramle (microscope brightfield) commme image basse fréquence et la vision aDRiM comme image haute fréquence. Ensuite la fréquence de coupure est conjointe entre les deux et vas varier au fil du temps (début à 100 cycle/img jusqu'à 0). Donc fc_low = fc_high. 
+
+La première itération fut incertaine, j'utilisait une règle linéaire avec le temps! Par contre tel que vu en classe, l'information n'es pas contenu linéairement à travers les fréquence, elle y est plus riches en basse fréquence. J'ai donc utilisé une règle exponentielle au travers du temps pour faire une transistion intéressante à l'oeil. Au fil du temps, les détails apparaissent et puis le contrast. 
+
+ces image pourrons être utiles pour la diffusion de la technique de microscopie.
+
+Voici des rendus de trois différentes échantillon passant de la vision normale (brightfiel) à la vision aDRiM. 
+
+
+##Figure##
+path_subplot1: images\hybride\bonusGIF\adrim_microscope_reveal_bubble.GIF
+path_subplot2: images\hybride\bonusGIF\adrim_microscope_reveal_cell1.gif
+path_subplot3: images\hybride\bonusGIF\adrim_microscope_reveal_cell3.gif
+Légende: GIF passant de vision brightfield vers aDRiM en utilisant une fréquence de coupure variable dans le temps de façon exponentielle
+
+
+
+
+######Sous section 2.3 : bonus visualisation polarimétrique ######
+
+Nous devellopons chez Patqer photonique inc. une camera polarimétrique. La polarimétrie permet de retirer plus d'information des images. Il est parcontre difficile de les rendre facile de compréhension. Une des visions que la polarimétrie permet est de savoir à quelle point une région envoie de la lumière polarisée, nous disons DOLP, deplus on peut savoir l'angle à laquelle cette polarization est.  
+########SOURCE : doi 
+
+J'ai donc utilisé la technique de combination par fréquence de coupure comme suit: 
+En basse fréquence, la vision normale 
+En haute fréquence, la vision polarimétrique
+De plus la vision normale est désaturé afin de permettre la couleur de la vision polarimétrique (en haute fréquence) de passer et d'être bien percu.
+....
+
+Je batise cette nouvelle vue polarization highligthing. Les zones polarisé sont mis de l'avant par leur niveau de détail relatif à les régions non-polarisé en plus d'être en surbrillance de couleur basé sur l'angle de polarization entrante. 
+
+##Figure##
+path: images\hybride\bonusVisualisation\plant_aop_ingredients.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+##Figure##
+path: images\hybride\bonusVisualisation\plant_aop_finalImg.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+##Figure##
+path: images\hybride\bonusVisualisation\plant_aop_frequeny.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....
+
+
+
+
+
+#######################Section 3 ###############################
+
+Piles gaussienne permettent de voir (et utiliser) le contenu avec une fréquence en dessous d'une certaine fréquence de coupure. Alors que les piles laplaciennes permettent de voir (et utiliser) le contenu d'une bande de fréquence définit. Dans mes piles gaussiene et laplaciennes la fréquences notable pour le deux types sont notés en haut des images. 
+
+Voici le rendu de la peinture 
+#####Source
+
+##Figure##
+path: images\pile\lincoln_gaussienne.png
+Légende: Images hybride créer à partir de deux images, en basse fréquence marilyn monroe.....

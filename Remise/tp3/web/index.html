@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapport TP2 - William Boissonneault</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+        }
+
+        div>p{
+            font-size: larger;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .student-name-field {
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 15px 25px;
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: left;
+        }
+        
+        .student-name-field label {
+            display: block;
+            color: #a0a0a0;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        
+        .student-name-field input {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            padding: 10px 15px;
+            color: #fff;
+            font-size: 1em;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .student-name-field input:focus {
+            outline: none;
+            border-color: #778da9;
+            box-shadow: 0 0 0 2px #778da940;
+        }
+        
+        .student-name-field input::placeholder {
+            color: #666;
+            font-style: italic;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #a0a0a0;
+            margin: 0;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #b0b0b0;
+        }
+        
+        .image-section {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .image-section h2 {
+            color: #778da9;
+            font-size: 1.6em;
+            margin: 0 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #778da940;
+        }
+        
+        h3 {
+            color: #e0e1dd;
+            font-size: 1.3em;
+            margin: 30px 0 20px 0;
+        }
+        
+        h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: #778da9;
+            margin-right: 12px;
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+        
+        .algorithm-box {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #778da9;
+        }
+        
+        .algorithm-box h4 {
+            color: #778da9;
+            margin: 0 0 10px 0;
+        }
+        
+        .algorithm-box p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+        
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .metrics-table th {
+            background: #778da930;
+            color: #778da9;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+        
+        .metrics-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95em;
+        }
+        
+        .metrics-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .metrics-table tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        
+        .figure-container {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        
+        .figure-container img {
+            max-width: 60%;
+            max-height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .figure-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+        }
+        
+        .figure-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+        
+        /* Lightbox/Modal styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 95vw;
+            max-height: 95vh;
+            margin: auto;
+            animation: zoomIn 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 95vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .lightbox-close:hover {
+            color: #ffc107;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Image grid styles */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .image-grid-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .image-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        
+        .image-grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .image-grid-item .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            padding: 15px 10px 10px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        
+        /* Comparison grid styles */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(1000px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .comparison-pair {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .comparison-pair-title {
+            text-align: center;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .comparison-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .comparison-image-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .comparison-image-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+        
+        .comparison-image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .comparison-image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+            padding: 12px 8px 8px;
+            font-size: 0.85em;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metadata-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #778da9;
+        }
+        
+        .metadata-card h4 {
+            color: #778da9;
+            margin: 0 0 12px 0;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .metadata-card .value {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1em;
+            color: #fff;
+            word-break: break-all;
+        }
+        
+        .formula-box {
+            background: rgba(0,0,0,0.4);
+            padding: 20px 25px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1em;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #ffd54f;
+        }
+        
+        .matrix-display {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            white-space: pre;
+            color: #b0bec5;
+        }
+        
+        .bayer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 40px);
+            gap: 4px;
+            margin-top: 10px;
+        }
+        
+        .bayer-cell {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .bayer-cell.R { background: linear-gradient(135deg, #f44336, #c62828); }
+        .bayer-cell.G { background: linear-gradient(135deg, #4caf50, #2e7d32); }
+        .bayer-cell.B { background: linear-gradient(135deg, #2196f3, #1565c0); }
+        
+        .wb-values {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .wb-chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 500;
+        }
+
+        .btn-gif-restart {
+          display: inline-block;
+          margin: 25px auto;
+          padding: 12px 28px;
+
+          font-family: "Segoe UI", Arial, sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+
+          color: #e8f0ff;
+          background: linear-gradient(135deg, #1b2a49, #274690);
+
+          border: 1px solid rgba(120, 170, 255, 0.35);
+          border-radius: 8px;
+
+          box-shadow:
+            0 0 0 rgba(0,0,0,0),
+            0 4px 12px rgba(0,0,0,0.25),
+            inset 0 0 12px rgba(120, 170, 255, 0.15);
+
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+
+        /* Hover = highlight + glow */
+        .btn-gif-restart:hover {
+          transform: translateY(-2px);
+          background: linear-gradient(135deg, #274690, #576ca8);
+          box-shadow:
+            0 6px 18px rgba(0,0,0,0.35),
+            0 0 12px rgba(120, 170, 255, 0.6),
+            inset 0 0 16px rgba(160, 200, 255, 0.25);
+        }
+
+        /* Click effect */
+        .btn-gif-restart:active {
+          transform: translateY(1px) scale(0.98);
+          box-shadow:
+            0 2px 6px rgba(0,0,0,0.3),
+            inset 0 0 10px rgba(120, 170, 255, 0.4);
+        }
+
+        /* Center container */
+        .button-container {
+          text-align: center;
+        }
+        
+        .wb-chip.r { background: rgba(244, 67, 54, 0.3); color: #ef9a9a; }
+        .wb-chip.g { background: rgba(76, 175, 80, 0.3); color: #a5d6a7; }
+        .wb-chip.b { background: rgba(33, 150, 243, 0.3); color: #90caf9; }
+        
+        code {
+            background: #778da920;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+  </style>
+</head>
+
+<body>
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>📸 TP2 : Espace fréquentielles en Photographie</h1>
+      <p class="subtitle">William Boissonneault</p>
+      <div class="date-badge">18 February 2026</div>
+    </header>
+
+    <div class="image-section">
+      <h2><span class="icon">🧾</span> Pré-face</h2>
+      <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #4fc3f7;">
+        <p style="color: #a0a0a0; font-style: italic;">
+          À moins d'indication contraire, toutes les photos utilisées sont de moi/équipe (travaux de recherche ou photographie personnelle).
+        </p>
+        <p style="color: #a0a0a0; font-style: italic;">
+          Chat-GPT a été utilisé pour transformer le fichier de rapport .txt en fichier HTML en reprenant le style du TP1, ainsi que pour aider à générer le code d'affichage des figures (Matplotlib).
+        </p>
+        <p style="color: #a0a0a0; font-style: italic;">
+          La programmation conceptuelle et liée au calculs est faite par moi-même, sauf indication contraire.
+        </p>
+      </div>
+    </div>
+
+    <h3>Introdutcion</h3>
+      <div>
+        <p>
+          Les images 2D peuvent être également représenté dans l'espace fréquentielle de façons similaire aux signaux électrique. Cependant à la place d'être relatif au temps, le domaine des fréquences des images ce fait spatialement. 
+
+          Tout comme avec des siganux électriques, nous pouvons appliquer un filtre sur le signal pour créer plusieurs effets. Dans le TP nous avons vu le filtrage pour la réduction de bruit qui atténuais les hautes fréquences, tel un filtre passe-as (G). Ce TP utilisera d'autres manipulaitons fréquentielles pour la combinations d'images. 
+        </p>
+      </div>
+
+    <!-- ===================== SECTION 1 ===================== -->
+    <div class="image-section">
+      <h2><span class="icon">🪄</span> Section 1 : Accentuation (Sharpenning)</h2>
+
+      <div>
+        <p>
+          Une effet très utilisé dans le quotident des photographes est le recours au filtre *sharppening*, sont objectif est d'accentuer les rebords d'images afin d'obtenir une meilleure perception de netteté.
+        </p>
+        <p>
+          Pour voler le punch, une exemple de rendu final suite à l'application d'un filtre choisi est donnée ci-bas (Figure 1.). On peut y apercevoir une meilleure définition au niveau de la face de l'oiseau.
+        </p>
+      </div>
+
+      <h3>Exemple d'application de sharpening</h3>
+      <div class="figure-container">
+        <img src="images/sharp/sharp_comp.png" alt="Photographie d'un oiseau avant et après l'application du filtre de sharppening choisi" class="clickable-image" data-fullsize="images/sharp/sharp_comp.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Figure 1. Photographie d'un oiseau avant et après l'application du filtre de sharppening choisi. Le filtre appliqué est le filtre standard.</p>
+      </div>
+
+      <div>
+        <p>
+          Le filtre de sharpening tente d'ajouter des détails (ils les amplifients en faite). L'équation du filtre est donc très intuitive : nous créons l'inverse du filtre passe-bas, soit un filtre passe-haut (simplement 1 - G(sigma)) afin d'isoler les détails lors de son application. Pour l'image final, il s'agit de l'image initial à laquelle on aditionne les détails (hautes fréquences de l'images) modulé par un facteur d'application alpha. Le paramètres sigma contrôle la taille de la gaussienne, et donc la fréquence spatial de coupure, dénoté fc.
+        </p>
+      </div>
+
+      <h3>Équation</h3>
+      <div class="formula-box">I<sub>r</sub> = I<sub>i</sub> + &alpha; ( I<sub>i</sub> - I<sub>i</sub> * G(&sigma;) )</div>
+      <p><code>latex: $I_r = I_i + \alpha ( I_i - I_i * G(\sigma))$</code></p>
+
+      <h3>Effet des paramètres</h3>
+
+      <div>
+        <p>
+          Nous pouvons voir à la figure 2a) que plus nous augmentons le sigma spatial, tel qu'attendu, plus des basses fréquences sont égalements accentué (regardons ici la gorge noire de l'oiseau qui grossit) puisque la fréquence de coupure se tasse vers les plus basses fréquences. Cette composante fait variés beaucoup le rendu, dommage que la plus part des logiciels de photogrpahie semble que varier le alpha. 
+        </p>
+        <p>
+          Nous pouvons voir à la figure 2b) que plus nous augmentons le alpha (facteur d'application), plus l'effet est prononcée. Il en va donc du choix de l'artiste. 
+        </p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="comparison-pair">
+          <div class="comparison-pair-title">Variation des paramètres (exemple)</div>
+          <div class="comparison-images">
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/image3_sharppening_var_sigma_spatial.png" alt="Paramètres - gauche" data-fullsize="images/sharp/image3_sharppening_var_sigma_spatial.png">
+              <div class="comparison-image-label">Variations sigma spatial</div>
+            </div>
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/image3_sharppening_var_alpha.png" alt="Paramètres - droite" data-fullsize="images/sharp/image3_sharppening_var_alpha.png">
+              <div class="comparison-image-label">Variation alpha</div>
+            </div>
+          </div>
+          <p class="figure-caption">Figure 2. Variation des paramètres de filtre sharpening</p>
+        </div>
+      </div>
+
+
+      <div>
+        <p>
+          Nous pouvons voir à la figure 3a) le même comportement qu'à la figure 2. Cela dit, nous pouvons regarder l'effet sur le bruit. La figure 3b) démontre clairement que plus nous appliquons le filtre sharpening, plus le bruit (qui est de l'information haute fréquence) est amplifé. Comme les pixels sont les fréquences les plus élevés des images, il n'y a pas d'échapatoire si nous utilison se simple filtre de sharpenning, le bruit sera de la partie!
+        </p>
+      </div>
+
+      <h3>Conditions difficiles (astrophotographie)</h3>
+      <div class="comparison-grid">
+        <div class="comparison-pair">
+          <div class="comparison-pair-title">Sharpening en astrophotographie</div>
+          <div class="comparison-images">
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/image1_sharppening_var_sigma_spatial.png" alt="Astro - gauche" data-fullsize="images/sharp/image1_sharppening_var_sigma_spatial.png">
+              <div class="comparison-image-label">Variation sigma spatial</div>
+            </div>
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/image1_sharppening_var_alpha.png" alt="Astro - droite" data-fullsize="images/sharp/image1_sharppening_var_alpha.png">
+              <div class="comparison-image-label">Variation alpha</div>
+            </div>
+          </div>
+          <p class="figure-caption">Figure 3. Variation des paramètres de filtre sharpening, conditions difficiles</p>
+        </div>
+      </div>
+
+      <h3>Quelques résultats</h3>
+      <div class="comparison-grid">
+        <div class="comparison-pair">
+          <div class="comparison-pair-title">Avant / Après (zoom)</div>
+          <div class="comparison-images">
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/sharp_comp.png" alt="Avant" data-fullsize="images/sharp/sharp_comp.png">
+              <div class="comparison-image-label">Large</div>
+            </div>
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/c_image3_comparison.png" alt="Après" data-fullsize="images/sharp/c_image3_comparison.png">
+              <div class="comparison-image-label">Rapproché (full res)</div>
+            </div>
+          </div>
+          <p class="figure-caption">Résultat images et section rapprochée, oiseau de gaspésie. (MES IMAGES)</p>
+        </div>
+
+        <div class="comparison-pair">
+          <div class="comparison-pair-title">Avant / Après (zoom 2)</div>
+          <div class="comparison-images">
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/image2_comparison.png" alt="Avant" data-fullsize="images/sharp/image2_comparison.png">
+              <div class="comparison-image-label">Large</div>
+            </div>
+            <div class="comparison-image-item" onclick="openLightbox(this.querySelector('img'))">
+              <img src="images/sharp/c_image2_comparison.png" alt="Après" data-fullsize="images/sharp/c_image2_comparison.png">
+              <div class="comparison-image-label">Rapproché</div>
+            </div>
+          </div>
+          <p class="figure-caption">Résultat images et section rapprochée. (MES IMAGES)</p>
+        </div>
+      </div>
+
+      <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffd54f;">
+        <p style="color: #a0a0a0; font-style: italic;">
+          Note : peut réparer (ou du moins camoufler) le floutage de mouvement, comme dans l'exemple de l'oiseau en plein vol!
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ===================== SECTION 2 ===================== -->
+    <div class="image-section">
+      <h2><span class="icon">🌈</span> Section 2 : Images hybrides (espace fréquentiel)</h2>
+
+      <div class="algorithm-box">
+        <h4>Base théorique</h4>
+        <p>Cette section est basée sur l'article : <i>Hybrid images</i> de A. Oliva</p>
+        <p><strong>Source : https://doi.org/10.1145/1179352.1141919 </strong> (<url>https://stanford.edu/class/ee367/reading/OlivaTorralb_Hybrid_Siggraph06.pdf</url>)</p>
+      </div>
+
+      <h3>Explication de la méthode</h3>
+
+      <div>
+        <p>
+          La méthode proposée par A. Oliva et al. vise à combiner le contenu fréquentielle de deux images à l'aide de simple filtres passe-bas et filtre passe haut dans l'espoir que les images soit perçus différement lorsque perçues à différentes distances. Cela mise sur le fait que notre perception à un certain seuil (employé très large) de perception angulaire. 
+        </p>
+        <p>
+          La méthode va comme suit: Nous prenons une première images (image basse fréquence) qui sera celle perçu le plus longtemps et appliquons un filtre passe-bas (encore içi un simple filtre gaussien sufit!). Nous prenos ensuite notre deuxième images (image haute fréquences) qui sera celle perçu de proch et appliquons un filtre passe-haut (encore içi, filtre impulsion - filtre gaussien sufit!). Nous additions finialement les deux résultats pour obtenir l'image hybride.
+        </p>
+        <p>
+          Plusieurs paramètres sont en jeux pour obtenir un résulat plaisant. L'alignement, le balance des couleurs, les fréquences de coupures utilisés, la distance entre les fréquences de coupres en sont des exemples exploré dans l'article et içi.
+        </p>
+      </div>
+
+      <h3>Utilisation des unités relatives (Cycles/image)</h3>
+
+      <div>
+        <p>
+          Tel que proposé dans l'article, j'ai utilisé les unités relatives (cycles/image) comme untié de fréquence spatial. Cette unité dit que x cycle de sinus rentrerait dans l'image par exemple. L'utilsation de ces unités enlève la dépendance de la résolution des images dans les variations de paramètres, facilitant le transfère de technique entre différentes images et source d'images. 
+        </p>
+      </div>
+
+
+      <h3>Exemple (Albert / Monroe)</h3>
+      <div>
+        <p>
+          Mon résultat obtenus avec les images fournits dans le TP est présenté à la figure 4.
+        </p>
+        <p><strong>Source images : </strong> (<url>https://wcours.gel.ulaval.ca/GIF4105/tps/tp2/hybrid_python.zip</url>)</p>
+      </div>
+      <div class="figure-container">
+        <img src="images/hybride/albert_monroe_ingredients.png" alt="Ingrédients (basse/haute fréquence)" class="clickable-image" data-fullsize="images/hybride/albert_monroe_ingredients.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Figure 4. Images hybrides créées à partir de deux images (basse fréquence / haute fréquence).</p>
+      </div>
+
+      <div>
+        <p>À noter : pour améliorer le rendu comparativement à l'exemple du TP, les bordures ont été remplies avec un filtre de moyenne locale. Cela diminue les bordures apparentes à la fin d'une image causées lors de l'alignement. Le filtre de moyenne locale (bonus non évalué) a été fait avec l'aide de Chat GPT</p>
+
+        <p>Selon l'article, la perception humaine fait que lorsque vu de loin, l'image basse fréquence domine, alors que vu de proche, l'image haute fréquence domine. Cette perception est liée à la résolution angulaire de l'oeil et cerveau humain. On peut donc simuler un visionnement « de loin » pour les internautes en affichant l'image plus petite. La figure 5 démontre l'effet attendu, Eistein est apparent dans la grande image alors que c'est Marilyne qui est la plus dominante dans la plus petie photo.</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/albert_monroe_visualsation.png" alt="Visualisation de l'effet à différentes tailles" class="clickable-image" data-fullsize="images/hybride/albert_monroe_visualsation.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Figure 5. Visualisation : l'image hybride vue à différentes tailles. Eistein est visible à la vision proche tandis que Marilyne est visible à la vision Éloignée. (Variez la distance d'observation si l'effet n'est pas convainquante)</p>
+      </div>
+
+      <h3>Analyse fréquentielle</h3>
+
+      <div>
+        <p>
+          La figure 6 présente les images intermédaire pour arrivés à l'image hybride ansi que les spectres de fréquence de ses derniers. Notons içi les manipulations permettent la visualisation : les spectres sont recardré à un zoom de 50% dans le centre afin de voir les parties importantes, de plus les spectres sont encodé en couleurs, l'information venant de l'image basse fréquence en rouge et l'informaiton venant de l'image haute fréquence en bleu.
+        </p>
+        <p>
+          Nous pouvons y voir réellement l'effet des filtres, l'image de Marilyne (floué) l'information loin des centre d'axes est pratiquement nuls, coupé par le filtre passe-bas (Fc_low = 7 cyc/img). De l'autre côté l'image de l'albert Eistein est completement enlevé de ses valeurs moyennes, que les détails sont apparents, ce qui est refletté dans son spectre puisqu'aucun pic central est présent, nous décernons biens la position des speckles dans un rayon particulié (FC_high = 11 cyc/img).
+        </p>
+        <p>
+          L'écart entre les deux fréquences de coupure est arbitraire, par contre il a été noté dans l'article initial de Oliva qu'avoir un certain écart donne perceptuellement de meilleur rendus. D'ou son utilisation içi.
+        </p>
+      </div>
+
+
+
+      <div class="figure-container">
+        <img src="images/hybride/albert_monroe_frequency.png" alt="Spectres et combinaison en fréquence" class="clickable-image" data-fullsize="images/hybride/albert_monroe_frequency.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Figure 6. Analyse fréquentielles des ingrédients de l'image hybride Albert Monroe; Haut) images filtrés et le rendu, Bas) Spectres (region central 50% zoom) correspondant aux images basse (en rouge) et hautes (en bleu) fréquences. Fc_low = 7 cyc/img , Fc_high = 11 cyc/img </p>
+      </div>
+
+      <h3>Généralisation en couleur (automne → hiver)</h3>
+
+      <div>
+        <p>
+          La technique, intuitive en valeur de gris, peut être facilement généraliser en couleur, il faut cependant faire attention à la perception couleur humaine. Effectivement il a été remarqué qu'en couleur, une grande saturation de l'image basse fréquence (souvent plus percu dans les basses fréquences basé sur mes expérimentation durant le TP) peut faire perdre l'image haute fréquence même de proche!
+        </p>
+        <p>
+          J'ai trouvé que de diminuer la saturation de l'image basse fréquence aidait à tout de même percevoir les deux images. Il est difficile de trouver le balancement, surtout que les couleurs se retourve dans les basses fréquences (donc difficile de faire apparaitre les couleurs de l'image haute fréquences)
+        </p>
+        <p>
+          La prochaine image tente de faire la métamorphose entre l'autonme (choisi pour les fréquences très élevés en générales, feuilles de couleurs etc.) et l'hiver (là ou ce que les fréquences sont très basse en générales, neige recouverte, les feuillus n'ont plus de feuille). Cependant le point de vue entre les deux images n'est pas exactement pareil de ce qui dimiue la qualité de l'effet.
+        </p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/banc_chalet_ingredients.png" alt="Ingrédients - banc/chalet" class="clickable-image" data-fullsize="images/hybride/banc_chalet_ingredients.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Ingrédients : automne (hautes fréquences riches) / hiver (basses fréquences dominantes). (MES IMAGES)</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/banc_chalet_visualsation.png" alt="Visualisation - banc/chalet" class="clickable-image" data-fullsize="images/hybride/banc_chalet_visualsation.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Visualisation à différentes tailles. (MES IMAGES)</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/banc_chalet_finalImg.png" alt="Image hybride finale - banc/chalet" class="clickable-image" data-fullsize="images/hybride/banc_chalet_finalImg.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Image hybride finale (point de vue imparfait → effet diminué). (MES IMAGES)</p>
+      </div>
+
+
+
+      <h2>Sous-section 2.1 : Bonus Utilité (microscopie « super microscope »)</h2>
+      <div>
+        <p>
+          Cette même technique,la combinaisons de différents contenu fréquentiels, lorsque les concepts sont bien compris peuvent être utilisé non simplement pour un party tric, mais pour des fins utiles.</p>
+          <p>La prochaine example modifie la technique en ayant la fréquence de coupure passe bas, plus haute que la fréquence de coupure passe-haut. Le but étant de combiner des techniques de microscopie qui sont assez complémentaire. La combinations des images de ces deux=ci formerait une image de meilleur attrait et contentant plus d'information en étant combinés que seul.</p> 
+          <p>La première image vient de la technique de microscope aDRiM, développé à l'université laval, conjonjointement avec mon professeur Tigran Galstian. Les images sont tirés des prises de données prise par-moi. Cette technique permet de monter du contenu spatial de basse fréquence et de hautes fréquences par interférence. Par contre elle excelle plus en basse fréquence. On peut voir une bulle de colle sur les images</p>
+          <div class="algorithm-box">
+                  <h4>Base théorique</h4>
+                  <p>Cette section est basée sur l'article : <i>Adaptive double refraction interference microscopy for label-free imaging of living cells</i> de W. Boissonneault</p>
+                  <p><strong>Source : https://doi.org/10.1364/OE.565594 </strong> (<url>https://opg.optica.org/oe/fulltext.cfm?uri=oe-33-16-32976</url>)</p>
+          </div>
+        <p>La deuxième image et technique est celle du contrast de phase, qui montre les contours des objets avec brio. Par contre cette technique est aveugle à l'aspect volumétrique (contenu dans les basse fréquences) de l'objet.</p>
+        <p>Je combine donc les deux techniques de microscopies, avec un chevauchement important frequentiel (Fc_low = 40 cyc/img, Fc_high = 5 cyc/img ), afin de retourver une images qui a à la fois les détails de contour de la technique de phase contrats microscopy ET les informations volumétrique fournit par aDRiM. Nous retrouvons donc une image de ''super'' microscope!</p>
+
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/bonusUtile/super_microscope_ingredients.png" alt="Ingrédients - super microscope" class="clickable-image" data-fullsize="images/hybride/bonusUtile/super_microscope_ingredients.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Combinaisons d'images microscopiques; Gauche) Image basse fréquence aDRiM, Centre) Image haute fréquence phase contrast, Right) Résultat hybride montrant toute les informations récolté par les deux techniques (MES IMAGES)</p>
+      </div>
+
+
+      <div>
+        <p>
+          Le spectres est plus bas, intéressant de noter que le chevauchement de fréquence est bien visible dans les spectres en plus de l'annulation des basses fréquences d'image de phase contrast (permettent la combination)</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/bonusUtile/super_microscope_frequency.png" alt="Spectre - super microscope" class="clickable-image" data-fullsize="images/hybride/bonusUtile/super_microscope_frequency.png" onclick="openLightbox(this)">
+        <p class="figure-caption">On remarque des anneaux dans le spectre de l'image 2 (contraste de phase).</p>
+      </div>
+
+
+      <h2>Sous-section 2.2 : Bonus GIF</h2>
+      <div>
+        <p>À des fins de marketing de la nouvelle technique de microscopie aDRiM, il serait intéressant de pouvoir visualiser le changement qu'apporte la technologie. J'ai donc fait un code créeant un GIF animation.</p>
+        <p>Ces GIF sont fait en prenant la vision noramle (microscope brightfield) commme image basse fréquence et la vision aDRiM comme image haute fréquence. Ensuite la fréquence de coupure est conjointe entre les deux et vas varier au fil du temps (début à 100 cycle/img jusqu'à 0). Donc fc_low = fc_high. </p>
+
+        <h3>Non linéarité de l'informaiton en fréquence!</h3>
+        <p>La première itération fut incertaine, j'utilisais une règle linéaire avec le temps! Par contre tel que vu en classe, l'information n'es pas contenu linéairement à travers les fréquence, elle y est plus riches en basse fréquence. J'ai donc utilisé une règle exponentielle au travers du temps pour faire une transistion intéressante à l'oeil. Au fil du temps, les détails apparaissent et puis le contraste.</p>
+        <p>Ces images pourrons être utiles pour la diffusion de la technique de microscopie.Voici des rendus de trois différentes échantillon passant de la vision normale (brightfiel) à la vision aDRiM.</p>
+      </div>
+
+      <div class="image-grid">
+        <div class="image-grid-item" onclick="openLightbox(this.querySelector('img'))" onmouseover="this.src=this.src">
+          <img src="images/hybride/bonusGIF/adrim_microscope_reveal_bubble.GIF" alt="GIF bubble" data-fullsize="images/hybride/bonusGIF/adrim_microscope_reveal_bubble.GIF">
+          <div class="image-label">Échantillon 1</div>
+        </div>
+        <div class="image-grid-item" onclick="openLightbox(this.querySelector('img'))" onmouseover="this.src=this.src">
+          <img src="images/hybride/bonusGIF/adrim_microscope_reveal_cell1.gif" alt="GIF cell 1" data-fullsize="images/hybride/bonusGIF/adrim_microscope_reveal_cell1.gif">
+          <div class="image-label">Échantillon 2</div>
+        </div>
+        <div class="image-grid-item" onclick="openLightbox(this.querySelector('img'))" onmouseover="this.src=this.src">
+          <img src="images/hybride/bonusGIF/adrim_microscope_reveal_cell3.gif" alt="GIF cell 3" data-fullsize="images/hybride/bonusGIF/adrim_microscope_reveal_cell3.gif">
+          <div class="image-label">Échantillon 3</div>
+        </div>
+      </div>
+
+      <div class="button-container">
+      <button class="btn-gif-restart" onclick="restartGIFs()">
+        ⟳ Recommencer les GIF
+      </button>
+    </div>
+
+      <p class="figure-caption">GIF : transition brightfield → aDRiM avec fréquence de coupure variable dans le temps (loi exponentielle).</p>
+
+      <h2>Sous-section 2.3 : Bonus visualisation polarimétrique</h2>
+      <div>
+        <p>Nous dévelopons chez <i>Patqer photonique inc.</i> (compagnie avec laquelle je travail) une camera polarimétrique. La polarimétrie permet de retirer plus d'information des images. Il est parcontre difficile de les rendre facile de compréhension. Une des visions que la polarimétrie permet est de savoir à quelle point une région renvoie vers l'observateur de la lumière polarisée, nous disons DOLP (degrée de polarisation linéaire), de plus on peut savoir l'angle à laquelle cette polarization est.</p>
+
+        <div class="algorithm-box">
+        <h4>Base théorique</h4>
+        <p>Cette section est basée sur la technologie brevetée et presentée dans l'article : <i>Polarimetric imaging with high spatial resolution</i> de A. Pusenkova et al.</p>
+        <p><strong>Source : </strong> (<url>https://www.nature.com/articles/s41598-025-07344-4</url>)</p>
+      </div>
+
+        <p>Mon but ici est de combiner la vue polarimétrique (AOLP+DOLP) avec la vision normale de la camera afin de mettre en évidence/surbrillance les régions polarisés de l'image.</p>
+        <p>Mon approche utilise la technique vu dans le TP, soit je prend la vision normale comme image basse fréquence, rendant la vision flouté. Puis la vue polarimétrique, elle-même modulée en luminance par le degrée de polarisation linéaire est prise en image haute fréquence. Nous avons donc une image résultante floué SAUF ou est ce que la polarisation est anormalement linéaire</p>
+        <p>Sur cela, j'ajoute une importante dé-saturation de l'image basse fréquence, laissant ainsi la place à la perception humaine des couleurs pour apercevoir les régions colorées par les hautes fréquence de l'image polarimétrique (l'anlge de polarisation en encodé en couleur)</p>
+      </div>
+
+
+      <div class="figure-container">
+        <img src="images/hybride/bonusVisualisation/plant_aop_ingredients.png" alt="Ingrédients polarimétrie" class="clickable-image" data-fullsize="images/hybride/bonusVisualisation/plant_aop_ingredients.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Ingrédients : normal + polarimétrique (AOP/DOLP).</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/bonusVisualisation/plant_aop_finalImg.png" alt="Final polarimétrie" class="clickable-image" data-fullsize="images/hybride/bonusVisualisation/plant_aop_finalImg.png" alt="Final polarimétrie" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu final : zones polarisées en surbrillance (couleur liée à l'angle).</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/hybride/bonusVisualisation/plant_aop_frequency.png" alt="Spectre polarimétrie" class="clickable-image" data-fullsize="images/hybride/bonusVisualisation/plant_aop_frequency.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Analyse fréquentielle.</p>
+      </div>
+
+
+      <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffd54f;">
+        <ol>Bonus de cette section: 
+        <li>Mes images 3x (6pt)</li>
+        <li>Trois approches différentes résultant en des effets et utilités différentes (6pt)</li>
+        <li>Deux résultat en couleurs (4pts)</li>
+      </ol>
+      </div>
+      
+    
+    </div>
+
+
+
+
+    <!-- ===================== SECTION 3 ===================== -->
+    <div class="image-section">
+      <h2><span class="icon">🏗️</span> Section 3 : Piles gaussienne et laplacienne</h2>
+
+      <div>
+        <p>Les piles gaussiennes permettent de voir (et utiliser) le contenu en dessous d'une fréquence de coupure donnée. Plus nous avons dans la pile plus les hautes fréquences sont coupés. Les piles laplaciennes tant qu'à eux permettent de voir (et utiliser) le contenu d'une bande de fréquences définie, elle est construite en faisant la différence entre deux tranches de la pile gaussienne, example G(50cyc/img)-G(25cyc/img) = L(50à25), cette tranche aura l'information des fréquences entre 50 et 25 cyc/img (et les rebords puisque qu'un filtre gaussien n'est pas un filtre boite évidement).</p>
+
+        <p>Dans mes piles gaussiennes et laplaciennes, les fréquences notables pour les deux types sont notées en haut des images.</p>
+
+        <p>La prochaine image est une peinture contenant plus différentes illustration dessinés à différentes tailles (donc fréquence). Nous remarquons dans la pile gaussienne, qu'au fil que nous décendons en fréquence de coupure, les illustration petites commenece à disparaitre. À l'aide de la pile laplacienne, nous pouvons identifié que les petits personnes dans des carrés sont contenus dans les fréquences 50-12.5cyc/img alors que la dame est contenu dans les fréquences 25-6.25cyc/img, lincoln tant qu'à lui est contenu dans les très basse fréquences.</p>
+        
+      </div>
+      
+
+      <p><strong>Source d'image initial :</strong> https://wcours.gel.ulaval.ca/GIF4105/tps/tp2/lincoln.jpg</p>
+      <div class="figure-container">
+        <img src="images/pile/lincoln_gaussienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/lincoln_gaussienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile gaussienne (exemple).</p>
+
+        <img src="images/pile/lincoln_laplacienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/lincoln_laplacienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile laplacienne (exemple).</p>
+      </div>
+
+      
+      <div>
+        <p>La prochaine image sera mon image hybride de Albert et Marilyne, nous nous reppelons que les fréquences de coupures pour cette image était de Fc_low = 7cyc/img et Fc_high = 11cyc/img. Nous nous attendons donc à voir, dans la pile laplacienne une distinction nette entre les informations de Albert et Marilyne. Ce que nous pouvons clairment coir, regardez les images dans les bandes de 100 à 12cyc/img, elles comprte que des détails d'Albert alors que dans les bandes 6.25-1.56 que Marilyne est présente. Le tout fait du sens!</p>
+        
+      </div>
+
+
+
+      <div class="figure-container">
+        <img src="images/pile/albertMonroe_gaussienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/albertMonroe_gaussienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile gaussienne (exemple).</p>
+      
+        <img src="images/pile/albertMonroe_laplacienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/albertMonroe_laplacienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile laplacienne (exemple).</p>
+      </div>
+
+      <div>
+        <p>Il est plus difficile d'analyser les piles en couleurs malheureusement.</p>
+        
+      </div>
+
+      <div class="figure-container">
+        <img src="images/pile/banc_gaussienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/banc_gaussienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile gaussienne (exemple).</p>
+      
+        <img src="images/pile/banc_laplacienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/banc_laplacienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Rendu : pile laplacienne (exemple).</p>
+      </div>
+
+      <h2>Section 3.1 : Bonus pyramide</h2>
+
+      <div>
+        <p>Une pyramide gaussienne a été fait, voici un exemple avec Albert Monroe. Les images ressemble à celle des piles, par contre réduire l'échantillonnage pourrait indure quelque artefact à sa reconstrution. Il a cependant une avantage nette, celle du stockage et mémoire vive nécessaire, un aspect important à garder à l'esprit. </p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/pile/albertMonroe_pyr_gaussienne.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/pile/albertMonroe_pyr_gaussienne.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Pyramide Gaussienne de mon images Albert Monroe</p>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- ===================== SECTION 4 ===================== -->
+    <div class="image-section">
+      <h2><span class="icon">🏗️</span> Section 4 : Mélange multirésolution</h2>
+
+      <div class="algorithm-box">
+        <h4>Base théorique</h4>
+        <p>Cette section est basée sur l'article : <i>A Multiresolution Spline With Application to
+Image Mosaics</i> de P.J. Burt</p>
+        <p><strong>Source : https://doi.org/10.1145/245.247</strong> (<url>https://persci.mit.edu/pub_pdfs/spline83.pdf</url>)</p>
+      </div>
+
+
+      <div>
+        <p>L'approche de mélange proposé dans cette article vise à faire des transitions plus harmonieuse que celle de la simple équation de composition.</p>
+        <p>En générale le but de la méthode est d'avoir un masque de composition qui est propre à chaque bande de fréquence. Les détails rapides (haute fréquence) se mérite une transition de composition rapide puisque le signal est en lui même de haute fréquence, peut être attendu dans la nature des changement brute alors que les ombrages ou couleurs uniforme se font composer de façon plus douce et éttendu car il n'est pas logique que ces fréquences change brusquement de niveau.</p>
+        <p>Concrêtement cela revient à décomposer les deux images en piles de laplacienne de même dimensions et le masque en pile gaussienne. Avec ces piles l'équation de composition peut être utilisée bande par bande, puis avec le residuel non inclus dans la pile laplacienne. La somme de toutes ces tranches composés sont additionnés pour créer l'image finale avec des transitions plus harmonieuse.</p>
+      </div>
+
+      <div>
+        <p>La prochaine figure démontre la combinaison faite entre deux peintures simialires (celles de l'article). La fréquence de départ était de 50cyc/img et des piles de 6 élements ont été fait pour faire cette image.</p>
+        <p><strong>Source d'image initial :</strong> https://wcours.gel.ulaval.ca/GIF4105/tps/tp2/spline.zip</p>
+      </div>
+      <div class="figure-container">
+        <img src="images/melange/pommange_melange.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/melange/pommange_melange.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Mélange d'images par piles laplacienne et gaussienne; pommange</p>
+      </div>
+
+      <div>
+        <h3>Masque irrégulier</h3>
+        <p>La prochaine figure démontre la combinaison faite entre la peinture <i>the creation of Adam</i> et une image vennant des jeux olympiques entourant l'erreur canadienne au curling avec un masque irrégulier. Ayant plus de détails dans ces images la fréquence de départ utilisé est de 100cyc/img et des piles de 7 élements ont été fait pour faire cette image.</p>
+        <p><strong>Source d'image initial :</strong> https://en.wikipedia.org/wiki/The_Creation_of_Adam </p>
+        <p><strong>Source d'image initial :</strong> https://www.buzzfeed.com/mjs538/boopgate-explainer </p>
+        <p>Comme cette technique affecte surtout de les transitions, la balance des blancs entre les deux images n'est pas corrigé. J'ai donc préalablement ajuster les couleurs de l'image de curling afin qu'elle s'y agence mieux. Une technique comme celle des gradients, tel que vu en classe aurait mieux corrigé cette aspect. </p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/melange/ir_melange.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/melange/ir_melange.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Mélange d'images par piles laplacienne et gaussienne; <i>I didn't touch Adam!</i></p>
+      </div>
+
+      <div>
+        <h3>Effet de floutage de la technique</h3>
+        <p>La prochaine figure démontre une combinaison stylistique entre la vision normale et celle polarimétrie discuté plutôt à la section 2.3</p>
+
+        <p>Durant la compostion de cette image, j'ai remarqué que la transition plus harmonieuse entre les images comparativement à la simple équation de combinaison (visualisé avec Photoshop) venait au coût d'une petit floutage de fond. Ce floutage peut être minimiser en choisissant une fréquence de coupure initiale plus élevée. Le rendu mis disponible est à une fréquence de début de 200cyc/img</p>
+      </div>
+
+      <div class="figure-container">
+        <img src="images/melange/pol_melange.png" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/melange/pol_melange.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Mélange d'images par piles laplacienne et gaussienne; <i>Best of both worlds</i>, on y voit dans la sect bas gauche la vision standard d'une caméra et dans la section haut droite la vision polarimétrique. Le centre montre stylistiquement la combination possible et les deux possibilité disponible avec notre système polarimétrique Predator</p>
+      </div>
+
+      <h3>Procédé complet</h3>
+      <div>
+        <p>Le procédé complet pour la création de l'image <i>I didn't touch Adam!</i> est illustré à la figure ci-dessous.</p>
+        <p>
+          Tel que mentionné plus haut, la pile laplacienne est effectué pour les deux images. Durant ce calcul, la dernière tranche gaussienne se retouve oublié (voir la formation des piles laplaciennes à la section 3), il est donc impotant de conserver cette dernière tranche gaussienne comme residuelle (fait office du DC si nous conservons l'abalogique électrique et l'espace Fourrier).
+        </p>
+        <p>
+          Ensuite le masque est lui aussi mis en pile gaussienne (c'est cette partie qui donne l'harmonisation des transition à plus basses fréquence comparé à l'équation de composition!). Ensuite chaque tranche verticale est composé avec l'équation de composition pour créer une image de bande composé. Ne pas oublier celle des valeurs residuelles.
+        </p>
+
+        <h3>Équation de composition</h3>
+        <div class="formula-box">I<sub>r</sub> = I<sub>1</sub> M +  I<sub>2</sub> (1-M)</div>
+        <p>
+          Finalement le tout est additionné pour donner le rendu final. 
+        </p>
+      </div>
+      <div class="figure-container" >
+        <img src="images/melange/procede_ir.png" style="max-height: 800px;" alt="Pile gaussienne - rendu" class="clickable-image" data-fullsize="images/melange/procede_ir.png" onclick="openLightbox(this)">
+        <p class="figure-caption">Procedé complet du mélange d'images par piles laplacienne et gaussienne; <i>I didn't touch Adam!</i>.</p>
+      </div>
+
+    </div>
+
+
+    <div class="image-section">
+      <h2>Conclusion</h2>
+      <div>
+        <p>
+        Nous avons rapidement vu le domaine fréquentiel des images; ses effets, sa représentation sur le spectres 2D ainsi que plusieurs techniques de mélange d'images. Bien que loufoque en sa base, certaines idées intéressantes peuvent en découller et même avoir des utilité de visualisation des données intéressante.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <p>TP2 &mdash; Photographie : espace fréquentiel</p>
+    </footer>
+  </div>
+
+  <script>
+function openLightbox(img) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const fullSizeSrc = img.getAttribute('data-fullsize') || img.src;
+            lightboxImg.src = fullSizeSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox(event) {
+            const lightbox = document.getElementById('lightbox');
+            // Only close if clicking on the background or close button
+            if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+    function restartGIFs() {
+      const gifs = document.querySelectorAll(".image-grid img");
+      gifs.forEach(img => {
+        const src = img.src;
+        img.src = "";      // reset
+        img.src = src;     // reload = restart animation
+      });
+    }
+  </script>
+</body>
+</html>
